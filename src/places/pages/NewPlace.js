@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-
-const NewPlace=({})=>{
+import "./NewPlace.css"
+import Input from "../../shared/components/FormElements/Input";
+const NewPlace=(props)=>{
 return(
-<div>NewPlace</div>
+<form className="place-form">
+<Input element={"input"} type={"text"} label={"Title"} />
+</form>
 )
 }
 export default NewPlace;
