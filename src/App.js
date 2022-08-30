@@ -5,6 +5,7 @@ import Users from "./users/pages/Users"
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from "./places/pages/UserPlaces"
+import UpdatePlace from "./places/pages/UpdatePlace";
 function Layout() {
     return (
         <div style={{}}>
@@ -25,6 +26,7 @@ function App() {
             <Route path={"/*"} element={<Navigate to={"/"} replace />}/>
            <Route path={"/places/new"} element={<NewPlace/>}/>
         <Route path={"/:userId/places"} element={<UserPlaces/>}/>
+        <Route path={"/places/:placeId"} element={<UpdatePlace/>}/>
     </Route>
   </Routes>
       </>
