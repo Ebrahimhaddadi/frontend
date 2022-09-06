@@ -10,7 +10,7 @@ const Auth=()=>{
     const auth=useContext(AuthContext)
 
     const [isLoginMode, setIsLoginMode] = useState(true);
-    console.log(isLoginMode,"isLoginMode")
+
 
     const [formState,inputHandler,setFormData]=useForm({
         email:{
@@ -22,9 +22,36 @@ const Auth=()=>{
             isValid: false,
         }
     },false)
-const authSubmitHandler = (event) => {
+const authSubmitHandler =async (event) => {
   event.preventDefault();
-    console.log(formState.inputs);
+
+    if(isLoginMode){
+        console.log(isLoginMode,"if a")
+    }else {
+        try {
+            const response = await fetch('http://localhost:5001/api/users/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formState.inputs.name.value,
+                    email: formState.inputs.email.value,
+                    password: formState.inputs.password.value
+                })
+            });
+
+            const responseData = await response.json();
+            if (!response.ok) {
+                throw new Error(responseData.message);
+            }
+
+            auth.login();
+        } catch (err) {
+
+        }
+    }
+
     auth.login()
 }
 const switchModeHandler = () => {
